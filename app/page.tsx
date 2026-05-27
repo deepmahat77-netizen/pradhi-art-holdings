@@ -1,90 +1,40 @@
+"use client";
+
+import { motion } from "framer-motion";
+import SiteFooter from "./components/site-footer";
+import SiteHeader from "./components/site-header";
+
 export default function Home() {
-  const collections = [
-    {
-      id: 1,
-      title: "Himalayan Spirit",
-      image: "/1.jpeg",
-      description: "The eternal dialogue between earth and sky",
-    },
-    {
-      id: 2,
-      title: "Sacred Light",
-      image: "/2.jpeg",
-      description: "Inner illumination through color and form",
-    },
-    {
-      id: 3,
-      title: "Heritage Echoes",
-      image: "/3.jpeg",
-      description: "Ancient soul in contemporary expression",
-    },
-    {
-      id: 4,
-      title: "Mountain Within",
-      image: "/4.jpeg",
-      description: "The inner landscape of being",
-    },
-  ];
-
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-50">
-      {/* Header */}
-      <header className="fixed top-0 w-full bg-zinc-950/95 backdrop-blur z-50 border-b border-zinc-800">
-        <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-          <div className="text-2xl font-serif tracking-widest">PRADHI</div>
-          <nav className="flex gap-8 text-sm tracking-wide">
-            <a href="#collections" className="hover:text-yellow-600 transition">Collections</a>
-            <a href="#artist" className="hover:text-yellow-600 transition">Artist</a>
-            <a href="#contact" className="hover:text-yellow-600 transition">Contact</a>
-          </nav>
-        </div>
-      </header>
+    <div className="min-h-screen bg-[#0a0a0a] text-[#f8f7f4]">
+      <SiteHeader />
 
-      {/* Hero Section */}
       <section className="h-screen flex items-center justify-center text-center px-6 pt-20">
-        <div>
-          <h1 className="text-6xl md:text-7xl font-serif mb-6 leading-tight tracking-tight">
-            Where the Himalayas<br />Meet Eternity
+        <motion.div initial={{ opacity: 0, y: 60 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.4 }}>
+          <h1 className="text-7xl md:text-8xl serif leading-none tracking-tight mb-8">
+            HIMALAYAN SOUL.<br />TIMELESS VALUE.
           </h1>
-          <p className="text-xl text-zinc-400 mb-8">
-            Contemporary Art by Pradhi RL Rana
+          <p className="text-2xl text-gray-400 max-w-2xl mx-auto">
+            Contemporary Nepali Art | Investment • Legacy • Prestige
           </p>
-          <p className="text-sm text-zinc-500 tracking-wider">SCROLL TO EXPLORE</p>
-        </div>
+        </motion.div>
       </section>
 
-      {/* Collections Section */}
-      <section id="collections" className="py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-5xl font-serif text-center mb-4">Collections</h2>
-          <p className="text-zinc-400 text-center mb-16">Discover our curated selection</p>
-
-          {/* Gallery Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {collections.map((collection) => (
-              <div
-                key={collection.id}
-                className="group cursor-pointer"
-              >
-                <div className="relative overflow-hidden bg-zinc-900 aspect-square mb-6">
-                  <img
-                    src={collection.image}
-                    alt={collection.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-                  />
-                </div>
-                <h3 className="text-2xl font-serif mb-2">{collection.title}</h3>
-                <p className="text-zinc-400 text-sm">{collection.description}</p>
+      <section id="collections" className="py-32 px-8">
+        <h2 className="text-5xl serif text-center mb-20">Collections</h2>
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20">
+          {[1, 2, 3, 4].map((n) => (
+            <motion.div key={n} whileHover={{ y: -15 }} className="group cursor-pointer">
+              <div className="aspect-[4/5] overflow-hidden bg-black mb-8">
+                <img src={`/${n}.jpeg`} alt={`Series ${n}`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
               </div>
-            ))}
-          </div>
+              <h3 className="text-3xl serif">Series {n}</h3>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-zinc-800 py-12 px-6 text-center text-zinc-500 text-sm">
-        <p>© 2026 Pradhi Art Holdings. All rights reserved.</p>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
